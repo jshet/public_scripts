@@ -22,6 +22,7 @@ def make_pairs(people):
         print(pairings)
         if people[1] == original_person_in_position_two:
             break
+    return 0
 
 if __name__ == "__main__":
     make_pairs(people_list)
