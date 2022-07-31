@@ -9,6 +9,10 @@ def make_pairs(people):
     Scheduling is completed when the original person in position two makes it back to position two.
     '''
 
+    # Check for duplicates in people list
+    if len(people) != len(set(people)):
+        raise ValueError('People list cannot contain duplicate elements')
+
     if len(people) % 2 != 0:       # if there's not an even number of people, add a break time
         people.append("-break-")
 
