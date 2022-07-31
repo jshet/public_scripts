@@ -1,12 +1,16 @@
 import roundrobin 
 import pytest
+from collections import Counter
+from itertools import combinations
 
 test_list = ["Salah","TAA","Robertson","Jota"]
 
 # tests for roundrobin.py
 
 def test_sample():
-    print(roundrobin.make_pairs(test_list))
+    schedule_combinations = roundrobin.make_pairs(test_list)
+    combos = combinations(test_list)
+    assert len(combos) == len(schedule_combinations)
 
 def test_duplicate_names():
     with pytest.raises(ValueError):
