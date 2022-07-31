@@ -30,7 +30,8 @@ def make_pairs(people):
             break
     return schedule
 
-if __name__ == "__main__":
+def main():
+    '''Command line functionality and help text.'''
     import sys
     try:
         user_input = sys.argv[1]
@@ -47,3 +48,6 @@ if __name__ == "__main__":
         output = make_pairs(people_list)
         for r in output:
             print(r)
+
+if __name__ == "__main__":
+    main()
