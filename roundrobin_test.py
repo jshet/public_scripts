@@ -1,9 +1,11 @@
 import roundrobin 
 
+test_list = ["Salah","TAA","Robertson","Jota"]
+
 # tests for roundrobin.py
 
 def test_sample():
-    print(roundrobin.make_pairs(["Salah","TAA","Robertson","Jota"]))
+    print(roundrobin.make_pairs(test_list))
 
 def test_duplicate_names():
     assert 0 == 0
