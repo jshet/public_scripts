@@ -3,7 +3,7 @@ import roundrobin
 # tests for roundrobin.py
 
 def test_sample():
-    print(roundrobin.make_pairs(["Salah","TAA","Robertson","Jota"])
+    print(roundrobin.make_pairs(["Salah","TAA","Robertson","Jota"]))
 
 def test_duplicate_names():
     assert 0 == 0
