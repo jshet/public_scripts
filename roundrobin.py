@@ -31,5 +31,19 @@ def make_pairs(people):
     return schedule
 
 if __name__ == "__main__":
-    output = make_pairs(test_list)
-    print(output)
+    import sys
+    try:
+        user_input = sys.argv[1]
+    except:
+        user_input = ""
+    if user_input in ["", "--help", "-h"]:
+        print(f'\n\n{"="*20}  ROUND ROBIN SCHEDULER  {"="*20}\n')
+        print('''Creates a round robin schedule for pairs of two.\nEveryone meets everyone.\nTo use, pass names as arguments.\nIf an odd number of names are given, a break will be added.\n''')
+        print(f'{"-"*3} EXAMPLE {"-"*3}\n')
+        print('''$ python roundrobin.py "Bob" "Jose" "Sally" "Jasmine" "Dave" "Priya"\n''')
+        print('''[('Bob', 'Priya'), ('Jose', 'Dave'), ('Sally', 'Jasmine')]\n[('Bob', 'Dave'), ('Priya', 'Jasmine'), ('Jose', 'Sally')]\n[('Bob', 'Jasmine'), ('Dave', 'Sally'), ('Priya', 'Jose')]\n[('Bob', 'Sally'), ('Jasmine', 'Jose'), ('Dave', 'Priya')]\n[('Bob', 'Jose'), ('Sally', 'Priya'), ('Jasmine', 'Dave')]''')
+    else:
+        people_list = sys.argv[1:]
+        output = make_pairs(people_list)
+        for r in output:
+            print(r)
