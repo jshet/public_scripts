@@ -26,7 +26,7 @@ try:
     original, thumb = image_resizer.make_thumbnail(im, max_dimension=max_dimension)
 
     if add_overlay == True:
-        thumb = image_resizer.merge_images(thumb, "static/coming-soon-banner-overlay.png")
+        thumb = image_resizer.merge_images(thumb, "static/ComingSoonOverlay1920x1080.png")
 
     col1, col2 = st.columns(2)
 

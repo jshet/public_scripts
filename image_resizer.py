@@ -13,7 +13,6 @@ def main():
     thumb.save(save_as)
 
 def merge_images(background, overlay):
-    # background_image = Image.open(background)
     overlay_image = Image.open(overlay)
     background.paste(overlay_image,(0,0), overlay_image)
     return background
