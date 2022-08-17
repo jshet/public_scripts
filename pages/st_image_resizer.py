@@ -21,7 +21,12 @@ try:
 
         max_dimension = max(width, height)
 
+        add_overlay = st.checkbox("Add 'Coming soon' overlay?")
+
     original, thumb = image_resizer.make_thumbnail(im, max_dimension=max_dimension)
+
+    if add_overlay == True:
+        thumb = image_resizer.merge_images(thumb, "static/coming-soon-banner-overlay.png")
 
     col1, col2 = st.columns(2)
 
