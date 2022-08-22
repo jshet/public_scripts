@@ -1,5 +1,6 @@
 import streamlit as st 
 from roundrobin import make_pairs
+import pandas as pd
 
 st.write("# Round Robin Pair Maker")
 st.write("Names go in, pairings come out, nobody gets hurt.")
@@ -12,24 +13,22 @@ people = []
 
 
 for p in entry.split(','):
-    people.append(p)
+    people.append(p.lstrip())
 
 st.markdown("## Pairings")
+st.markdown("Copy/paste the below into an email, write it on a whiteboard, send a screenshot in a text.  Or click the button below to download a CSV file and email that to people.")
+
 if len(set(people)) == len(people) and len(people) > 1:
     schedule = make_pairs(people=people)
+    schedule_by_person = []
     rounds = len(schedule)
+    table_header = ["Name"]
+
     for round in range(rounds):
-        st.markdown(f"#### Round {round + 1}")
-        output = ""
-        for pair in schedule[round]:
-            output+=pair[0]
-            output+=" and "
-            output+=pair[1]
-            output+=" | "    
-        st.write(output[:-2])  # remove the last | character    
-    st.markdown("## Pairings by people")
+        table_header.append(f"Round {round+1}")  
+
     for p in people:
-        st.markdown(f"#### {p}'s pairings")
+        p_list = [p]
         for round in range(rounds):
             for pair in schedule[round]:
                 if p in pair:
@@ -37,6 +36,15 @@ if len(set(people)) == len(people) and len(people) > 1:
                         if p == person:
                             pass
                         else:
-                            st.markdown(f"**Round {round+1}:** {person}")
+                            p_list.append(person)
+        schedule_by_person.append(p_list)
+    df = pd.DataFrame(schedule_by_person, columns=table_header)
+    style = df.style.hide(axis='index')
+    st.write(style.to_html(), unsafe_allow_html=True) 
+
+    df_csv = df.to_csv(index=False).encode('utf-8')
+    st.markdown("#")
+    st.download_button("Download pairings as CSV", df_csv, "schedule.csv", "text/csv", key='download-csv')
+
 else:
     st.markdown("(Pairings appear down here when names get added up there.)")
