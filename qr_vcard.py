@@ -6,6 +6,9 @@ csv_in = "scratch/in.csv"
 csv_out = "scratch/bcards_out.csv"
 save_to = "scratch/QRcodes2"
 
+website_url = "https://www.lucidprivateoffices.com"
+organization = "Lucid Private Offices"
+
 def createQRCode():
     df = pd.read_csv(csv_in)
     df["@QR_Code"] = "C:\\Users\\<user>\\Downloads\\QRcodes\\" + df["Name"].str.replace(" ","_") + ".png"
@@ -15,8 +18,8 @@ def createQRCode():
         title = values["Title"]
         phone = values["Phone"]
         email = values["Email"]
-        website = "https://www.lucidprivateoffices.com"
-        org = "Lucid Private Offices"
+        website = website_url
+        org = organization
         cell = values["Cell"]
         # street = values["street"]
         # city = values["city"]
