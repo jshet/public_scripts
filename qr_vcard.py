@@ -1,7 +1,7 @@
 import pyqrcode
 import pandas as pd
 
-csv_in = "bcards.csv"
+csv_in = "in.csv"
 csv_out = csv_in.split(".csv")[0] + "_out.csv"
 
 def createQRCode():

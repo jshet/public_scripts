@@ -1,13 +1,34 @@
 import qrcode
 import qrcode.image.svg
+import os
 
-url = "https://www.google.com/maps/place/24+Greenway+Plaza+Suite+1800,+Houston,+TX+77046/@29.7563981,-95.5627019,11.13z/data=!4m5!3m4!1s0x8640c103f0eaaaab:0xf7fcc222e922d806!8m2!3d29.7302941!4d-95.440683"
-urls = ['']
+test_list = [["name1","data1"], ["name2", "data2"], ["data3"]]
+destination_dir = ""
+params = "?utm_source=bcard&utm_medium=qr_code_221014"
 
-def make_survey_urls(urls, sep_str=""):
-    for url in urls:
-        output = url.replace(' ','%20')
-        name = url.split("=")[1].replace(" ","-").replace("/","") + ".png"
+# Assign a different value here to run with your data
+list_of_urls = test_list
+
+def make_qr_urls_from_list(urls, sep_str="", add_params=""):
+    for l in list_of_urls:
+        '''
+        Converts urls to url friendly format
+        Converts names to url friendly format
+        Creates qr code using url as data
+        Saves qr code in destination directory with given filename
+        If a parameter string is given, it will append it to the url
+        '''
+
+        # If no name provided, make the first 30 characters of data the name.
+        if len(l) == 1:
+            l.append(l[0][:30])
+
+        output = l[1].replace(' ','%20') + add_params
+        name = "qr_" + l[0].replace(' ','-').replace('/','-') + ".png"
+        save_as = os.path.join(destination_dir, name)
+
+        qr = make_qr_code(output)
+        qr.save(save_as)
 
 def make_qr_code(contents, fill_color="#000000", back_color="#FFFFFF", box_size=10, border=2):
     qr = qrcode.QRCode(
@@ -23,11 +44,6 @@ def make_qr_code(contents, fill_color="#000000", back_color="#FFFFFF", box_size=
 
     return img
 
-
-def make_qr_code_from_url(url, fn):
-    img = qrcode.make(url, image_factory=qrcode.image.svg.SvgImage)
-    img.save(fn)
-
 def with_colors(url, fn):
     qr = qrcode.QRCode(
         version=1,
@@ -42,5 +58,5 @@ def with_colors(url, fn):
 
     img.save(fn)
 
-make_qr_code_from_url(url, "qr.svg")
-# with_colors(url, "qr2.png")
+if __name__=="__main__":
+    make_qr_urls_from_list(list_of_urls)
