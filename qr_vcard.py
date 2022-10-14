@@ -1,8 +1,10 @@
 import pyqrcode
 import pandas as pd
+import os
 
-csv_in = "in.csv"
-csv_out = csv_in.split(".csv")[0] + "_out.csv"
+csv_in = "scratch/in.csv"
+csv_out = "scratch/bcards_out.csv"
+save_to = "scratch/QRcodes2"
 
 def createQRCode():
     df = pd.read_csv(csv_in)
@@ -25,7 +27,7 @@ def createQRCode():
 
         image = pyqrcode.create(data)
         # image.svg(f"vcard_qrs/{lastname}_{firstname}.svg", scale="5")
-        image.png(f"vcard_png_qrs/{firstname}_{lastname}.png")
+        image.png(os.path.join(save_to, f"{firstname}_{lastname}.png"))
     
     df.to_csv(csv_out, index=False)
 
