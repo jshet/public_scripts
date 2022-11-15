@@ -17,8 +17,16 @@ def combine_csv_files(dir_of_files,save_to_dir):
 
     combined.to_csv(save_as, index=False)
 
+def correlate_columns(file_list):
+    for fi in file_list:
+        out_name = fi.split(".csv")[0] + "_out.csv"
+        df = pd.read_csv(fi)
+        corred = df.corr(method='pearson')
+        corred.to_csv(out_name)
+
 where_the_files_are = "path/to/files"
 where_to_save_the_report = "path/to/save/report"
 
-combine_csv_files(where_the_files_are, where_to_save_the_report)
-
+# combine_csv_files(where_the_files_are, where_to_save_the_report)
+file_list = ["m_corr_in.csv"]
+correlate_columns(file_list)
