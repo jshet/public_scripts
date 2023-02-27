@@ -2,6 +2,7 @@
   <path d="M 10 20 L 20 10 H 80 L 90 20 V 80 L 80 90 H 20 L 10 80 Z" />
   <path d="M 20 90 V 150 L 30 160 H 70 L 80 150 V 90 L 70 80 H 30 L 20 90 Z" />
   <path d="M 10 160 L 20 150 H 80 L 90 160 V 180 H 80 L 20 180 V 160 Z" />
+  <path d="M 20 170 V 130 H 80 V 170 H 70 V 160 H 30 V 160 H 20 V 170 Z" />
   <path d="M 0 10 V 190 H 10 V 10 H 0 Z" />
   <path d="M 90 10 V 190 H 100 V 10 H 90 Z" />
   <path d="M 0 200 H 100 V 190 H 0 V 200 Z" />
